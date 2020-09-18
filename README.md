@@ -17,7 +17,7 @@ You will need 'httr', 'jsonlite', 'tidyverse', and 'knitr'
 They are added in at the beginning of the first chunk of code they are needed in.
 
 # Data
-## records
+## Records
 To access the **NHL records** please use the *nhlRecords* function. There is one required argument this is the name of the endpoint and an optional argument as well. The optional argument is to call in a specific franchise ID number.
 Using this created function I accessed franchise, franchise-team-totals, franchise-season-records, franchise-goalie-records, and franchise-skater-records.
 ## Stats
