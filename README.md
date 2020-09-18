@@ -1,6 +1,6 @@
 ---
 Author: Ariana Polanco
-date: 9/16/20
+date: 9/8/20
 title: "ST 558: Project 1"
 output: rmarkdown::github_document
   toc: true
@@ -9,6 +9,7 @@ output: rmarkdown::github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
 # Setup
 ## Libraries
 You will need 'httr', 'jsonlite', 'tidyverse', and 'knitr'
@@ -19,7 +20,7 @@ They are added in at the beginning of the first chunk of code they are needed in
 To access the **NHL records** please use the *nhlRecords* function. There is one required argument this is the name of the endpoint and an optional argument as well. The optional argument is to call in a specific franchise ID number.
 Using this created function I accessed franchise, franchise-team-totals, franchise-season-records, franchise-goalie-records, and franchise-skater-records.
 ## Stats
-To access the **NHL stats** please use the *nhlStats* function. There are technically no required arguments for this function. If used without arugments it will take all of the stats data unmodified. For modifications set modify equal to your desired modification. In addition to this, some modifiers allow further modifying for teamID and season. to capture a specific team, please set teamID equal desired ID number. If specific seasons are desired set season equal to desired season year. If multpiple seasons are desired please identify all season years side by side without spaces. For example if you are interested in 2015 and 2016 then season="20152016".
+To access the **NHL stats** please use the *nhlStats* function. There are technically no required arguments for this function. If used without arguments it will take all of the stats data unmodified. For modifications set modify equal to your desired modification. In addition to this, some modifiers allow further modifying for teamID and season. to capture a specific team, please set teamID equal desired ID number. If specific seasons are desired set season equal to desired season year. If multpiple seasons are desired please identify all season years side by side without spaces. For example if you are interested in 2015 and 2016 then season="20152016".
 ## Wrapper Function
 To access either of the above functions a wrapper function was created.
 If you are looking for records set interest to your desired endpoint. 
@@ -120,23 +121,20 @@ franSeason <- mutate(franSeason,mostWinGroup =
                          ifelse(mostWins %in% 20:39,"20-39",
                             ifelse(mostWins %in% 40:59,"40-59",
                               ifelse(mostWins %in% 60:79,"60-79",">=80")))))
-
+# frequency tables for most losses and most wins by start year.
 kable(table(franSeason$mostLossGroup,franSeason$startYr), 
       caption = "Start Years by Most Lossess Groups")
 kable(table(franSeason$mostWinGroup,franSeason$startYr), 
       caption = "Start Years by Most Wins Groups")
 
+#summary tables for win streaks and loss streaks
 kable(round(do.call(cbind, lapply(select(franSeason,ends_with("WinStreak")),
                           summary)),2),caption = "Seasons: Win Streak Summary")
 kable(round(do.call(cbind, lapply(select(franSeason,ends_with("lossStreak")), 
                           summary)),2),caption = "Seasons: Loss Streak Summary")
 
+# bar graph for win streak by team in descending order
 g <- ggplot(data = franSeason)
-#g + geom_boxplot(aes(x=firstSeasonId,y =winStreak)) +
- # geom_jitter(aes(x=firstSeasonId,y =winStreak, color = firstSeasonId))+
-  #labs(title="Boxplot for Win Streak")
-
-
 g + geom_bar(aes(x = reorder(teamCommonName,-winStreak),y =winStreak), stat="identity") +
   theme(axis.text.x = element_text(angle=-90)) +  
   labs(title = "Win Streak by Team", x="Common Team Name")
