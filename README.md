@@ -33,7 +33,7 @@ library(httr)
 library(jsonlite)
 library(tidyverse)
 
-# I created a function that calls a specific endpoint for the NHL API, and if applicable the franchise ID number
+# I created a function that calls a specific endpoint for the NHL API, and if applicable the franchise ID number.
 nhlRecords <- function(endpoint, franchiseID=NULL, franName=NULL){
   baseURL <- "https://records.nhl.com/site/api"
   mod <- "?cayenneExp=franchiseId="
