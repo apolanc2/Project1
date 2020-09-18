@@ -2,8 +2,9 @@
 Author: Ariana Polanco
 date: 9/8/20
 title: "ST 558: Project 1"
-output: rmarkdown::github_document
-  toc: true
+output: 
+  rmarkdown::github_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}
