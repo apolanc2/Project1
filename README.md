@@ -1,9 +1,8 @@
 ---
-Author: Ariana Polanco
-date: 9/8/20
+Author: "Ariana Polanco"
+date: "9/8/20"
 title: "ST 558: Project 1"
-output: 
-  rmarkdown::github_document:
+  output: rmarkdown::github_document:
     toc: true
 ---
 
@@ -33,7 +32,7 @@ library(httr)
 library(jsonlite)
 library(tidyverse)
 
-# I created a function that calls a specific endpoint for the NHL API, and if applicable the franchise ID number.
+# I created a function that calls a specific endpoint for the NHL API, and if applicable the franchise ID number
 nhlRecords <- function(endpoint, franchiseID=NULL, franName=NULL){
   baseURL <- "https://records.nhl.com/site/api"
   mod <- "?cayenneExp=franchiseId="
@@ -91,11 +90,7 @@ nhlAPI <- function(interest, stat=FALSE,...){
   }
   else {nhlStats(modifier=interest)}
 }
-franchise
-goalRec
-seasonRec
-skateRec
-teamTot
+
 ```
 
 # Exploring the Data
